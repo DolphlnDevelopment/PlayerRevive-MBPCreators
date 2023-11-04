@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[24,)"
+loaderVersion="[36,)"
 issueTrackerURL="https://github.com/CreativeMD/PlayerRevive/issues"
 logoFile="playerrevive.png"
 license="GNU General Public License v3.0"
@@ -12,7 +12,7 @@ license="GNU General Public License v3.0"
 	authors=["CreativeMD"]
 	description='''Help your friends in need and revive them'''
 	
-[[dependencies.itemphysic]]
+[[dependencies.playerrevive]]
 	modId="creativecore"
 	mandatory=true
 	ordering="NONE"

@@ -1,0 +1,10 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "team.creative.playerrevive.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "playerrevive.refmap.json",
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
