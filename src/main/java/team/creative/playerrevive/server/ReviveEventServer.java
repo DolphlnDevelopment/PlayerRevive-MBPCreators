@@ -1,8 +1,10 @@
 package team.creative.playerrevive.server;
 
+import dev.polv.policeitemsmod.common.item.custom.HandcuffsItem;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Util;
 import net.minecraft.util.text.ChatType;
@@ -25,6 +27,8 @@ import team.creative.playerrevive.api.DamageBledToDeath;
 import team.creative.playerrevive.api.IBleeding;
 import team.creative.playerrevive.cap.Bleeding;
 import team.creative.playerrevive.packet.HelperPacket;
+import virtuoel.pehkui.api.ScaleData;
+import virtuoel.pehkui.api.ScaleTypes;
 
 public class ReviveEventServer {
     
@@ -75,7 +79,8 @@ public class ReviveEventServer {
             PlayerEntity target = (PlayerEntity) event.getTarget();
             PlayerEntity helper = event.getPlayer();
             IBleeding revive = PlayerReviveServer.getBleeding(target);
-            if (revive.isBleeding()) {
+
+            if (revive.isBleeding() && !(event.getPlayer().getItemInHand(event.getHand()).getItem() instanceof HandcuffsItem)) {
                 PlayerReviveServer.removePlayerAsHelper(helper);
                 revive.revivingPlayers().add(helper);
                 PlayerRevive.NETWORK.sendToClient(new HelperPacket(target.getUUID(), true), (ServerPlayerEntity) helper);
@@ -115,7 +120,12 @@ public class ReviveEventServer {
             
             if (player.isPassenger())
                 player.stopRiding();
-            
+
+            // Making you can't move (polv)
+            ScaleData motionScaleData = ScaleTypes.MOTION.getScaleData(player);
+            motionScaleData.setScale(0.0F);
+            // end
+
             event.setCanceled(true);
             
             if (PlayerRevive.CONFIG.affectFood)

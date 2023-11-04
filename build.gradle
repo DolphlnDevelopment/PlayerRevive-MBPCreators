@@ -151,13 +151,18 @@ dependencies {
     // These dependencies get remapped to your current MCP mappings
     // deobf 'com.mod-buildcraft:buildcraft:6.0.8:dev'
     compileOnly fg.deobf(files("./libs/CreativeCore_v2.2.1_mc1.16.5.jar"))
+    runtimeOnly fg.deobf(files("./libs/CreativeCore_v2.2.1_mc1.16.5.jar"))
+    compileOnly fg.deobf(files("./libs/tac-release-0.3.9.3-1.16.5.jar"))
+    runtimeOnly fg.deobf(files("./libs/tac-release-0.3.9.3-1.16.5.jar"))
+    compileOnly fg.deobf(files("./libs/policeitemsmod-1.16.5-0.0.0.1.jar"))
+    runtimeOnly fg.deobf(files("./libs/policeitemsmod-1.16.5-0.0.0.1.jar"))
 
     // For more info...
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
     // Pehkui by Virtuoel
-//    implementation fg.deobf("com.github.Virtuoel:Pehkui:${pehkui_version}")
+    implementation fg.deobf("com.github.Virtuoel:Pehkui:${pehkui_version}")
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
 

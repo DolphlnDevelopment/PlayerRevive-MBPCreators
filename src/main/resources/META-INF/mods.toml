@@ -11,10 +11,24 @@ license="GNU General Public License v3.0"
 	displayURL="https://www.curseforge.com/minecraft/mc-mods/playerrevive"
 	authors=["CreativeMD"]
 	description='''Help your friends in need and revive them'''
-	
+
 [[dependencies.playerrevive]]
 	modId="creativecore"
 	mandatory=true
 	ordering="NONE"
 	side="BOTH"
 	versionRange="[2.0.0,)"
+
+[[dependencies.playerrevive]]
+	modId="tac"
+	mandatory=true
+	ordering="NONE"
+	side="BOTH"
+	versionRange="[0.3.7,)"
+
+[[dependencies.playerrevive]]
+	modId="pehkui"
+	mandatory=true
+	versionRange="[3.7.8+1.16.5-forge,)"
+	ordering="NONE"
+	side="BOTH"
