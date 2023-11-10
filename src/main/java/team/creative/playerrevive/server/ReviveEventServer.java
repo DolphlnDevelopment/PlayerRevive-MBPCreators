@@ -121,11 +121,6 @@ public class ReviveEventServer {
             if (player.isPassenger())
                 player.stopRiding();
 
-            // Making you can't move (polv)
-            ScaleData motionScaleData = ScaleTypes.MOTION.getScaleData(player);
-            motionScaleData.setScale(0.0F);
-            // end
-
             event.setCanceled(true);
             
             if (PlayerRevive.CONFIG.affectFood)
@@ -150,6 +145,21 @@ public class ReviveEventServer {
                     return PlayerRevive.BLEEDING.orEmpty(cap, bleed);
                 }
             });
+    }
+
+    @SubscribeEvent
+    public void onPlayerTick(PlayerTickEvent e) {
+        if (!e.side.isServer()) return;
+        PlayerEntity player = e.player;
+        IBleeding bleeding = PlayerReviveServer.getBleeding(player);
+        if (bleeding.isBleeding()) {
+            ScaleData motionScaleData = ScaleTypes.MOTION.getScaleData(player);
+            if (player.isOnGround() && motionScaleData.getScale() != 0.0f) {
+                motionScaleData.setScale(0.0F);
+            } else if (!player.isOnGround() && motionScaleData.getScale() == 0.0f) {
+                motionScaleData.resetScale();
+            }
+        }
     }
     
 }
